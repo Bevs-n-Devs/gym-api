@@ -17,10 +17,11 @@ public class CheckController
     
     public static void MapCheckEndpoint(WebApplication app)
     {
-        app.MapGet("/gymapi/check/{userId}", (string userId) => 
+        app.MapPost("/gymapi/check", (HttpContext context) => 
         {
+            string userid = context.Request.Query["userid"];
             // Check if the user is blacklisted
-            bool isBanned = BlacklistedUsers.Contains(userId);
+            bool isBanned = BlacklistedUsers.Contains(userid);
             
             if (isBanned)
             {
@@ -31,7 +32,7 @@ public class CheckController
                     status_code = 403
                 });
             }
-            else if (NotBlacklistedUsers.Contains(userId))
+            else if (NotBlacklistedUsers.Contains(userid))
             {
                 return Results.Ok(new 
                 { 
