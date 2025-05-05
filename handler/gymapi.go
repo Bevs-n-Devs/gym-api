@@ -1,15 +1,13 @@
 package handler
 
-import (
-	"net/http"
-)
+import "net/http"
 
-func Home(w http.ResponseWriter, r *http.Request) {
+func GymAPI(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-	welcomeMsg := "Hello World!"
+	welcomeMsg := "Welcome to the Gym API!"
 	w.Write([]byte(welcomeMsg))
 }

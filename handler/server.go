@@ -6,23 +6,6 @@ import (
 	"os"
 )
 
-// func StartServer() {
-// 	http.HandleFunc("/", Home)
-// 	// http.HandleFunc("/gymapi", GymAPI)
-// 	// http.HandleFunc("/gymapi/ping", Ping)
-// 	// http.HandleFunc("/gymapi/check", Check)
-
-// 	// start server
-// 	listener, err := net.Listen("tcp", "localhost:9009")
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-
-// 	if err := http.Serve(listener, nil); err != nil {
-// 		log.Fatal(err)
-// 	}
-// }
-
 const (
 	localPort = "9009"
 )
@@ -32,6 +15,9 @@ func StartServer() {
 	// define routes
 	log.Println("defining routes")
 	http.HandleFunc("/", Home)
+	http.HandleFunc("/gymapi", GymAPI)
+	http.HandleFunc("/gymapi/ping", Ping)
+	http.HandleFunc("/gymapi/check", Check)
 
 	// initialise port for application
 	httpPort := os.Getenv("PORT")
